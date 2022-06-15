@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pokemon</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/jQuery_3.6.0.js"></script>
+</head>
+<body>
+<header>
+    <a th:href="@{/hrc}">
+        <img id="menuimage" classname="logo" src="/BlueHRCclipped.png" width= "45px" alt="" th:href="@{/hrc}">
+    </a>
+    <div th:replace="~{fragment/navigation :: navigation}"></div>
+    <a class="cta" th:href="@{/about}" ><button>Contact</button></a>
+</header>
+
+<div id="pokecontainer"></div>
+
+<script>
+
+const pokecontainer = document.getElementById("pokecontainer");
+var errorcount = 0
+for (i = 1; i <= 150; i++) {getpokemon(i)}
+
+function getpokemon(id) {
+  var url = "https://pokeapi.co/api/v2/pokemon/";
+  url = url.concat(id)
+  fetch(url).
+  then(response => response.json()).
+  then(data => createclasslist(data)).
+  catch(errorcount++,  console.log(errorcount));
+  /*then(data => console.log(data.abilities[0], data.name));*/
+}
+
+function createclasslist(pokemondata){
+  console.log(pokemondata.name, pokemondata.abilities.length);
+ /*$("#pokecontainer").append("<div>" + pokemondata.name + "</div>");*/
+
+  const pokelist = document.createElement("div");
+  const pokeInnerHTML = pokemondata.name;
+  pokelist.innerHTML = pokeInnerHTML;
+  pokecontainer.appendChild(pokelist);
+}
+
+
+</script>
+
+
+</body>
+</html>

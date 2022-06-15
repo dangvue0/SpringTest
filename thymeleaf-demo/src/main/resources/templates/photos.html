@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Photos</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/jQuery_3.6.0.js"></script>
+</head>
+<body>
+
+<header>
+  <a th:href="@{/hrc}">
+    <img id="menuimage" classname="logo" src="/BlueHRCclipped.png" width= "45px" alt="" th:href="@{/hrc}">
+  </a>
+  <div th:replace="~{fragment/navigation :: navigation}"></div>
+  <a class="cta" th:href="@{/about}" ><button>Contact</button></a>
+</header>
+
+<div id="box-num"></div>
+
+  <script>
+    $(document).ready(function (){
+
+    callimagefolder("hrcimage/")
+
+      function callimagefolder(foldername){
+        var folder = foldername;
+        $.ajax({
+        url : folder,
+        success: function (data) {
+            $(data).find("a").attr("href", function (i, val) {
+                if( val.match(/\.(jpe?g|png|gif)$/) ) {
+                    //$("body").append( "<img src='"+ val +"'>" );
+                    $("#box-num").append( "<img src='"+ val +"'height=250>" );
+                    console.log(folder, val);
+                }
+            });
+          }
+        });
+      }
+
+      function domore(){
+        console.log(jQuery.version);
+
+      }
+
+    });
+  </script>
+</body>
+</html>
