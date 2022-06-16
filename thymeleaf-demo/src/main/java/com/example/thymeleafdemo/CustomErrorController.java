@@ -24,10 +24,10 @@ public class CustomErrorController implements ErrorController {
                 return "error-404";
             }
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
-                return "errors-500";
+                return "error-500";
             }
         }
-        return "errors-other";
+        return "error-other";
     }
 
 

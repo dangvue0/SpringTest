@@ -1,23 +1,35 @@
 package com.example.thymeleafdemo;
 
 public class About {
+    private int id;
     private String name;
     private String email;
     private String githubUrl;
 
-    public About(String name, String email, String githubUrl) {
+
+    @Override
+    public String toString() {
+        return "About{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", githubUrl='" + githubUrl + '\'' +
+                '}';
+    }
+
+    public About(int id, String name, String email, String githubUrl) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.githubUrl = githubUrl;
     }
 
-    @Override
-    public String toString() {
-        return "About{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", githubUrl='" + githubUrl + '\'' +
-                '}';
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

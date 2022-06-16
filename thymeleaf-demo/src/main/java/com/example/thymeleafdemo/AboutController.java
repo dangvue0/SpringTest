@@ -25,5 +25,15 @@ public class AboutController {
     public void addAbout(@RequestBody About about) {
         aboutService.addAbout(about);
     }
+
+    @GetMapping(value = "/about/user/{name}")
+    public About findByName (@PathVariable String name) {
+        return aboutService.findByName(name);
+    }
+
+    @GetMapping(value = "/about/{id}")
+    public About findById (@PathVariable int id) {
+        return aboutService.finById(id);
+    }
 }
 
